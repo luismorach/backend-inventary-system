@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
 require('dotenv').config();
 const pool = new pg_1.Pool({
-    user: process.env.USER,
+    user: process.env.DB_USER,
     host: process.env.HOST,
     database: process.env.DATABASE,
     password: process.env.PASSWORD,

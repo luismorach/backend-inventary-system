@@ -19,11 +19,12 @@ class AuthController {
             throw ('Usuario bloqueado comuniquese con un administrador')
         }
          const building = await empresaController.getBuilding()
-
+        
         let ACCESS_TOKEN = generateAccessToken({ id_user: user.id_user},process.env.SECRET, '5m')
 
         let REFRESH_TOKEN = generateAccessToken({ id_user: user.id_user}, process.env.SECRET_REFRESH, '1h')
 
+        
         res.status(200).json({
             id_user:user.id_user,
             names_user:user.names_user+' '+ user.last_names_user,
