@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+
+  backend-inventary-system:
+    container_name: backend-inventary-system
+    image: backend-inventary-system:1.0.0
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - DB_USER=luis
+      - PASSWORD=luis9825
+      - HOST=postgres
+      - DATABASE=db_inventary
+      - DB_PORT=5432
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db_inventary
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    ports:
+      - 3080:80
+    depends_on:
+      - postgres
+
