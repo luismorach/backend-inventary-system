@@ -51,11 +51,9 @@ class DevolucionesController {
             'r.id_user=u.id_user JOIN currencies c ON r.currency_code=c.currency_code ' +
             'AND date>=$1 AND date<=$2 ORDER BY time desc',
             [initialDate, endDate])
-        if (response.rowCount > 0) {
-            res.json(response.rows)
-        } else {
-            throw ('No existen devoluciones para la fecha especificada')
-        }
+        
+        res.json(response.rows)
+        
     }
     public async getDevolucionByUser(req: Request, res: Response) {
         const names = '%' + req.params.names.split(' ')[0] + '%'

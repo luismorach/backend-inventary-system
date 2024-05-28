@@ -9,8 +9,8 @@ services:
     ports:
       - 3000:3000
     environment:
-      - DB_USER=luis
-      - PASSWORD=luis9825
+      - DB_USER=postgres
+      - PASSWORD=root
       - HOST=postgres
       - DATABASE=db_inventary
       - DB_PORT=5432
@@ -19,9 +19,11 @@ services:
 
   postgres:
     image: postgres
+    command: postgres -c datestyle='iso, dmy'
     ports:
       - 5432:5432
     environment:
+      PGDATESTYLE: 'iso, dmy'
       POSTGRES_PASSWORD: root
       POSTGRES_DB: db_inventary
   
